@@ -55,10 +55,11 @@ class App(tk.Frame):
         self.widgets["exit_button"] = tk.Button(self, text="Exit", command=self.exit_choice, width=20, height=2,
                                                 font=("Times New Roman", 16))
         self.widgets["exit_button"].place(relx=5 / screensize[0], rely=415 / screensize[1])
-        self.master.bind("<Motion>", self.button_highlight)
+        self.master.bind("<Motion>", self.mouse_button_highlight)
+        self.master.bind("<KeyRelease>", self.button_button_highlight)
         for widget in self.widgets.values():
             if isinstance(widget, tk.Button):
-                widget.bind("<Motion>", self.button_highlight)
+                widget.bind("<Motion>", self.mouse_button_highlight)
 
     def username_input(self):
         pass
@@ -74,13 +75,14 @@ class App(tk.Frame):
         for widget in self.widgets.values():
             widget.config(state="disabled")
             widget.unbind("<Motion>")
-        self.widgets["exit_frame"] = tk.Frame(self, width=200, height=60)
+        self.widgets["exit_frame"] = tk.Frame(self, width=200, height=90)
         self.widgets["exit_label"] = tk.Label(self.widgets["exit_frame"], text="Are you sure you want to quit?")
-        self.widgets["exit_label"].place(x=0, y=0)
-        self.widgets["exit_yes_button"] = tk.Button(self.widgets["exit_frame"], text="Yes", command=self.quit)
-        self.widgets["exit_yes_button"].place(x=0, y=30)
-        self.widgets["exit_yes_button"] = tk.Button(self.widgets["exit_frame"], text="No", command=self.main_menu)
-        self.widgets["exit_yes_button"].place(x=100, y=30)
+        self.widgets["exit_label"].place(x=90, y=30, anchor="center")
+        self.widgets["exit_yes_button"] = tk.Button(self.widgets["exit_frame"], text="Yes", command=self.quit, width=10)
+        self.widgets["exit_yes_button"].place(x=0, y=60)
+        self.widgets["exit_yes_button"] = tk.Button(self.widgets["exit_frame"], text="No", command=self.main_menu,
+                                                    width=10)
+        self.widgets["exit_yes_button"].place(x=100, y=60)
         self.widgets["exit_frame"].place(x=0, y=0)
         self.widgets["exit_frame"].update()
         self.widgets["exit_frame"].place(
@@ -90,7 +92,7 @@ class App(tk.Frame):
     def introduction(self):
         pass
 
-    def button_highlight(self, event):
+    def mouse_button_highlight(self, event):
         for widget in self.widgets.values():
             if isinstance(widget, tk.Button):
                 widget.update()
@@ -117,6 +119,23 @@ class App(tk.Frame):
                                         event.y_root in range(widget_y, widget_y + widget_height) and self.active[-1] == 0:
                                     self.active[-1] = 1
                                     self.button_animation(widget)
+
+    def button_button_highlight(self, event):
+        if event.keysym == "Tab":
+            for widget in self.widgets.values():
+                if isinstance(widget, tk.Button):
+                    if widget.focus_get() == widget and self.active[-1] == 0:
+                        self.active[-1] = 1
+                        self.button_animation(widget)
+                    else:
+                        for _widget in self.widgets.values():
+                            if isinstance(_widget, tk.Button):
+                                if _widget.focus_get() != _widget and _widget.config("width")[-1] > 20:
+                                    self.active[-1] = 0
+                                    _widget.config(width=20)
+                                    if widget.focus_get() == widget and self.active[-1] == 0:
+                                        self.active[-1] = 1
+                                        self.button_animation(widget)
 
     def button_animation(self, widget):
         if self.active[-1] != 0 and len([_widget for _widget in self.widgets.values()

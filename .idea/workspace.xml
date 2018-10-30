@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a623f1e-5620-435f-bfd0-03d609091ee6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/False-Insignia.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/False-Insignia.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/False-Insignia.py" beforeDir="false" afterPath="$PROJECT_DIR$/False-Insignia.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,34 +49,35 @@
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.146" value="1" />
+          <entry key="project.open.time.179" value="1" />
           <entry key="project.open.time.96" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="md" value="197" />
-          <entry key="py" value="5381" />
+          <entry key="py" value="5942" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Markdown" value="3" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="6" />
+          <entry key="Python" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Markdown" value="197" />
-          <entry key="Python" value="5381" />
+          <entry key="Python" value="5942" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="LICENSE" value="1" />
           <entry key="md" value="3" />
-          <entry key="py" value="6" />
+          <entry key="py" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -90,24 +88,26 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/False-Insignia.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+            <state relative-caret-position="612">
+              <caret line="163" lean-forward="true" selection-start-line="163" selection-end-line="163" />
               <folding>
                 <element signature="n#!!doc" />
-                <element signature="e#69#114#1" />
-                <element signature="e#313#684#0" />
-                <element signature="e#719#2336#0" />
-                <element signature="e#2290#2294#0" />
-                <element signature="e#2329#2333#0" />
-                <element signature="e#2371#2375#0" />
-                <element signature="e#2412#3369#0" />
-                <element signature="e#3407#3411#0" />
-                <element signature="e#3585#5431#0" />
-                <element signature="e#5465#5893#0" />
-                <element signature="e#5931#6054#0" />
-                <element signature="e#6087#6091#0" />
-                <element signature="e#4059#4107#0" />
-                <marker date="1540768504346" expanded="true" signature="6582:6586" ph="..." />
+                <element signature="e#69#801#1" />
+                <element signature="e#1000#1371#0" />
+                <element signature="e#1406#3099#0" />
+                <element signature="e#3063#3067#0" />
+                <element signature="e#3102#3106#0" />
+                <element signature="e#3144#3148#0" />
+                <element signature="e#3185#4181#0" />
+                <element signature="e#4219#4223#0" />
+                <element signature="e#4272#6102#0" />
+                <element signature="e#6338#7234#0" />
+                <element signature="e#6152#6580#0" />
+                <element signature="e#6618#6741#0" />
+                <element signature="e#6774#6778#0" />
+                <element signature="e#6812#6860#0" />
+                <marker date="1540859468928" expanded="true" signature="7235:7240" ph="..." />
+                <marker date="1540859468928" expanded="true" signature="7714:7718" ph="..." />
               </folding>
             </state>
           </provider>
@@ -118,7 +118,7 @@
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
               <first_editor relative-caret-position="85">
-                <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+                <caret line="5" selection-start-line="5" selection-end-line="5" />
               </first_editor>
               <second_editor />
             </state>
@@ -155,7 +155,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-124" />
+    <option name="x" value="72" />
     <option name="y" value="-8" />
     <option name="width" value="1400" />
     <option name="height" value="920" />
@@ -265,13 +265,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24625" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24625" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.31937173" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.31937173" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -289,13 +290,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/tkinter/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="2344" column="6" selection-start-line="2344" selection-start-column="6" selection-end-line="2344" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/LICENSE">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
@@ -307,32 +301,41 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="85">
-            <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+            <caret line="5" selection-start-line="5" selection-end-line="5" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/tkinter/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-217">
+          <caret line="1208" column="8" selection-start-line="1208" selection-start-column="8" selection-end-line="1208" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/False-Insignia.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        <state relative-caret-position="612">
+          <caret line="163" lean-forward="true" selection-start-line="163" selection-end-line="163" />
           <folding>
             <element signature="n#!!doc" />
-            <element signature="e#69#114#1" />
-            <element signature="e#313#684#0" />
-            <element signature="e#719#2336#0" />
-            <element signature="e#2290#2294#0" />
-            <element signature="e#2329#2333#0" />
-            <element signature="e#2371#2375#0" />
-            <element signature="e#2412#3369#0" />
-            <element signature="e#3407#3411#0" />
-            <element signature="e#3585#5431#0" />
-            <element signature="e#5465#5893#0" />
-            <element signature="e#5931#6054#0" />
-            <element signature="e#6087#6091#0" />
-            <element signature="e#4059#4107#0" />
-            <marker date="1540768504346" expanded="true" signature="6582:6586" ph="..." />
+            <element signature="e#69#801#1" />
+            <element signature="e#1000#1371#0" />
+            <element signature="e#1406#3099#0" />
+            <element signature="e#3063#3067#0" />
+            <element signature="e#3102#3106#0" />
+            <element signature="e#3144#3148#0" />
+            <element signature="e#3185#4181#0" />
+            <element signature="e#4219#4223#0" />
+            <element signature="e#4272#6102#0" />
+            <element signature="e#6338#7234#0" />
+            <element signature="e#6152#6580#0" />
+            <element signature="e#6618#6741#0" />
+            <element signature="e#6774#6778#0" />
+            <element signature="e#6812#6860#0" />
+            <marker date="1540859468928" expanded="true" signature="7235:7240" ph="..." />
+            <marker date="1540859468928" expanded="true" signature="7714:7718" ph="..." />
           </folding>
         </state>
       </provider>
