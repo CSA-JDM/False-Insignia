@@ -15,9 +15,10 @@
     <session id="-938429892">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.2" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -32,12 +33,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="371" />
+          <entry key="md" value="21" />
+          <entry key="py" value="454" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="371" />
+          <entry key="Markdown" value="21" />
+          <entry key="Python" value="454" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -85,40 +88,50 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/False-Insignia.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="163" lean-forward="true" selection-start-line="163" selection-end-line="163" />
+            <state relative-caret-position="170">
+              <caret line="29" column="31" lean-forward="true" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
               <folding>
                 <element signature="n#!!doc" />
                 <element signature="e#69#801#1" />
-                <element signature="e#1000#1371#0" />
-                <element signature="e#1406#3099#0" />
-                <element signature="e#3063#3067#0" />
-                <element signature="e#3102#3106#0" />
-                <element signature="e#3144#3148#0" />
-                <element signature="e#3185#4181#0" />
-                <element signature="e#4219#4223#0" />
-                <element signature="e#4272#6102#0" />
+                <element signature="e#3004#3106#0" />
+                <element signature="e#3146#3150#0" />
+                <element signature="e#3185#3189#0" />
+                <element signature="e#3227#3231#0" />
+                <element signature="e#3268#4355#0" />
+                <element signature="e#3356#3425#0" />
+                <element signature="e#4393#4397#0" />
+                <element signature="e#4452#6282#0" />
+                <element signature="e#4551#6282#0" />
+                <element signature="e#5019#5088#0" />
+                <element signature="e#5131#6282#0" />
+                <element signature="e#5193#6282#0" />
+                <element signature="e#5256#6282#0" />
+                <element signature="e#5862#6282#0" />
+                <element signature="e#6197#6282#0" />
                 <element signature="e#6338#7234#0" />
-                <element signature="e#6152#6580#0" />
-                <element signature="e#6618#6741#0" />
-                <element signature="e#6774#6778#0" />
-                <element signature="e#6812#6860#0" />
-                <marker date="1540859468928" expanded="true" signature="7235:7240" ph="..." />
-                <marker date="1540859468928" expanded="true" signature="7714:7718" ph="..." />
+                <element signature="e#6376#7234#0" />
+                <element signature="e#6429#7234#0" />
+                <element signature="e#6483#7234#0" />
+                <element signature="e#6565#6638#0" />
+                <element signature="e#6689#7234#0" />
+                <element signature="e#6755#7234#0" />
+                <element signature="e#6822#7234#0" />
+                <element signature="e#6930#7234#0" />
+                <element signature="e#7145#7234#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="85">
-                <caret line="5" selection-start-line="5" selection-end-line="5" />
+              <first_editor relative-caret-position="68">
+                <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
               </first_editor>
               <second_editor />
             </state>
@@ -149,8 +162,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/False-Insignia.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -182,7 +195,7 @@
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="Reset Font Size&#9;ACTION&#9;EditorResetFontSize&#10;reset&#9;ACTION&#9;EditorResetFontSize&#10;resi&#9;ACTION&#9;EditorResetFontSize" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -264,15 +277,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24625" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.31937173" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.31885594" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -297,46 +310,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="85">
-            <caret line="5" selection-start-line="5" selection-end-line="5" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/tkinter/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-217">
-          <caret line="1208" column="8" selection-start-line="1208" selection-start-column="8" selection-end-line="1208" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/tkinter/__init__.py" />
     <entry file="file://$PROJECT_DIR$/False-Insignia.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="163" lean-forward="true" selection-start-line="163" selection-end-line="163" />
+        <state relative-caret-position="170">
+          <caret line="29" column="31" lean-forward="true" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
           <folding>
             <element signature="n#!!doc" />
             <element signature="e#69#801#1" />
-            <element signature="e#1000#1371#0" />
-            <element signature="e#1406#3099#0" />
-            <element signature="e#3063#3067#0" />
-            <element signature="e#3102#3106#0" />
-            <element signature="e#3144#3148#0" />
-            <element signature="e#3185#4181#0" />
-            <element signature="e#4219#4223#0" />
-            <element signature="e#4272#6102#0" />
+            <element signature="e#3004#3106#0" />
+            <element signature="e#3146#3150#0" />
+            <element signature="e#3185#3189#0" />
+            <element signature="e#3227#3231#0" />
+            <element signature="e#3268#4355#0" />
+            <element signature="e#3356#3425#0" />
+            <element signature="e#4393#4397#0" />
+            <element signature="e#4452#6282#0" />
+            <element signature="e#4551#6282#0" />
+            <element signature="e#5019#5088#0" />
+            <element signature="e#5131#6282#0" />
+            <element signature="e#5193#6282#0" />
+            <element signature="e#5256#6282#0" />
+            <element signature="e#5862#6282#0" />
+            <element signature="e#6197#6282#0" />
             <element signature="e#6338#7234#0" />
-            <element signature="e#6152#6580#0" />
-            <element signature="e#6618#6741#0" />
-            <element signature="e#6774#6778#0" />
-            <element signature="e#6812#6860#0" />
-            <marker date="1540859468928" expanded="true" signature="7235:7240" ph="..." />
-            <marker date="1540859468928" expanded="true" signature="7714:7718" ph="..." />
+            <element signature="e#6376#7234#0" />
+            <element signature="e#6429#7234#0" />
+            <element signature="e#6483#7234#0" />
+            <element signature="e#6565#6638#0" />
+            <element signature="e#6689#7234#0" />
+            <element signature="e#6755#7234#0" />
+            <element signature="e#6822#7234#0" />
+            <element signature="e#6930#7234#0" />
+            <element signature="e#7145#7234#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="68">
+            <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

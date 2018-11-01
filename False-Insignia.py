@@ -41,20 +41,20 @@ class App(tk.Frame):
 
     def main_menu(self):
         self.reset_window()
-        self.widgets["title_label"] = tk.Label(self, text="False Insignia", font=("Times New Roman", 40, "bold"))
+        self.widgets["title_label"] = tk.Label(self, text="False Insignia", font=("Times New Roman", 60, "bold"))
         self.widgets["title_label"].place(relx=5 / screensize[0], rely=5 / screensize[1])
         self.widgets["new_game_button"] = tk.Button(self, text="New Game", command=self.introduction, width=20,
-                                                    height=2, font=("Times New Roman", 16))
-        self.widgets["new_game_button"].place(relx=5 / screensize[0], rely=195 / screensize[1])
+                                                    height=2, font=("Times New Roman", 20))
+        self.widgets["new_game_button"].place(relx=5 / screensize[0], rely=245 / screensize[1])
         self.widgets["load_game_button"] = tk.Button(self, text="Load Game", command=self.load_menu, width=20,
-                                                     height=2, font=("Times New Roman", 16))
-        self.widgets["load_game_button"].place(relx=5 / screensize[0], rely=265 / screensize[1])
+                                                     height=2, font=("Times New Roman", 20))
+        self.widgets["load_game_button"].place(relx=5 / screensize[0], rely=365 / screensize[1])
         self.widgets["options_button"] = tk.Button(self, text="Options", command=self.options_menu, width=20, height=2,
-                                                   font=("Times New Roman", 16))
-        self.widgets["options_button"].place(relx=5 / screensize[0], rely=335 / screensize[1])
+                                                   font=("Times New Roman", 20))
+        self.widgets["options_button"].place(relx=5 / screensize[0], rely=485 / screensize[1])
         self.widgets["exit_button"] = tk.Button(self, text="Exit", command=self.exit_choice, width=20, height=2,
-                                                font=("Times New Roman", 16))
-        self.widgets["exit_button"].place(relx=5 / screensize[0], rely=415 / screensize[1])
+                                                font=("Times New Roman", 20))
+        self.widgets["exit_button"].place(relx=5 / screensize[0], rely=605 / screensize[1])
         self.master.bind("<Motion>", self.mouse_button_highlight)
         self.master.bind("<KeyRelease>", self.button_button_highlight)
         for widget in self.widgets.values():
