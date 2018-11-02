@@ -63,10 +63,12 @@ class App(tk.Frame):
 
     def username_input(self):
         self.reset_window()
-        self.widgets["username_label"] = tk.Label(self, text="Username:", font=("Times New Roman", 20))
-        self.widgets["username_label"].place(relx=5 / screensize[0], rely=5 / screensize[1])
+        self.widgets["title_label"] = tk.Label(self, text="Character Sheet", font=("Times New Roman", 40, "bold"))
+        self.widgets["title_label"].place(relx=5 / screensize[0], rely=5 / screensize[1])
+        self.widgets["username_label"] = tk.Label(self, text="Name:", font=("Times New Roman", 20))
+        self.widgets["username_label"].place(relx=5 / screensize[0], rely=100 / screensize[1])
         self.widgets["username_entry"] = tk.Entry(self, font=("Times New Roman", 20))
-        self.widgets["username_entry"].place(relx=140 / screensize[0], rely=5 / screensize[1])
+        self.widgets["username_entry"].place(relx=100 / screensize[0], rely=100 / screensize[1])
 
     def load_menu(self):
         pass
@@ -138,7 +140,6 @@ class App(tk.Frame):
                     else:
                         for _widget in self.widgets.values():
                             if isinstance(_widget, tk.Button):
-                                print(_widget)
                                 if _widget.focus_get() != _widget and _widget["width"] != 20 and self.active[-1] == 1:
                                     self.button_animation(_widget, "deactivation")
                                     self.button_animation(widget.focus_get(), "activation")
