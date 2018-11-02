@@ -43,7 +43,7 @@ class App(tk.Frame):
         self.reset_window()
         self.widgets["title_label"] = tk.Label(self, text="False Insignia", font=("Times New Roman", 60, "bold"))
         self.widgets["title_label"].place(relx=5 / screensize[0], rely=5 / screensize[1])
-        self.widgets["new_game_button"] = tk.Button(self, text="New Game", command=self.introduction, width=20,
+        self.widgets["new_game_button"] = tk.Button(self, text="New Game", command=self.username_input, width=20,
                                                     height=2, font=("Times New Roman", 20))
         self.widgets["new_game_button"].place(relx=5 / screensize[0], rely=245 / screensize[1])
         self.widgets["load_game_button"] = tk.Button(self, text="Load Game", command=self.load_menu, width=20,
@@ -62,7 +62,11 @@ class App(tk.Frame):
                 widget.bind("<Motion>", self.mouse_button_highlight)
 
     def username_input(self):
-        pass
+        self.reset_window()
+        self.widgets["username_label"] = tk.Label(self, text="Username:", font=("Times New Roman", 20))
+        self.widgets["username_label"].place(relx=5 / screensize[0], rely=5 / screensize[1])
+        self.widgets["username_entry"] = tk.Entry(self, font=("Times New Roman", 20))
+        self.widgets["username_entry"].place(relx=140 / screensize[0], rely=5 / screensize[1])
 
     def load_menu(self):
         pass
@@ -102,7 +106,7 @@ class App(tk.Frame):
                 if event.x_root in range(widget_x, widget_x + widget_width) and \
                         event.y_root in range(widget_y, widget_y + widget_height) and self.active[-1] == 0:
                     self.active[-1] = 1
-                    self.button_animation(widget)
+                    self.button_animation(widget, "activation")
                 else:
                     for _widget in self.widgets.values():
                         if isinstance(_widget, tk.Button):
@@ -112,40 +116,49 @@ class App(tk.Frame):
                             _widget_width, _widget_height = int(_widget.winfo_width()), int(_widget.winfo_height())
                             if _widget["width"] != 20 and \
                                     (event.x_root not in range(_widget_x, _widget_x + _widget_width) or
-                                     event.y_root not in range(_widget_y, _widget_y + _widget_height)):
+                                     event.y_root not in range(_widget_y, _widget_y + _widget_height)) and \
+                                    self.active[-1] == 1:
                                 self.active[-1] = 0
-                                _widget.config(width=20)
+                                self.button_animation(_widget, "deactivation")
                                 if event.x_root in range(widget_x, widget_x + widget_width) and \
-                                        event.y_root in range(widget_y, widget_y + widget_height) and self.active[-1] == 0:
+                                        event.y_root in range(widget_y, widget_y + widget_height) \
+                                        and self.active[-1] == 0:
                                     self.active[-1] = 1
-                                    self.button_animation(widget)
+                                    self.button_animation(widget, "activation")
 
     def button_button_highlight(self, event):
         if event.keysym == "Tab":
+            break_check = False
             for widget in self.widgets.values():
                 if isinstance(widget, tk.Button):
                     if widget.focus_get() == widget and self.active[-1] == 0:
                         self.active[-1] = 1
-                        self.button_animation(widget)
+                        self.button_animation(widget, "activation")
+                        break
                     else:
                         for _widget in self.widgets.values():
                             if isinstance(_widget, tk.Button):
-                                if _widget.focus_get() != _widget and _widget.config("width")[-1] > 20:
-                                    self.active[-1] = 0
-                                    _widget.config(width=20)
-                                    if widget.focus_get() == widget and self.active[-1] == 0:
-                                        self.active[-1] = 1
-                                        self.button_animation(widget)
+                                print(_widget)
+                                if _widget.focus_get() != _widget and _widget["width"] != 20 and self.active[-1] == 1:
+                                    self.button_animation(_widget, "deactivation")
+                                    self.button_animation(widget.focus_get(), "activation")
+                                    break_check = True
+                                    break
+                        if break_check:
+                            break
 
-    def button_animation(self, widget):
-        if self.active[-1] != 0 and len([_widget for _widget in self.widgets.values()
-                                         if isinstance(_widget, tk.Button) and _widget["width"] != 20]) < 2:
+    def button_animation(self, widget, version):
+        if version == "activation":
+            if self.active[-1] != 0:
+                widget.update()
+                if widget["width"] < 25:
+                    widget.config(width=widget["width"] + 1)
+                    self.after(20, lambda: self.button_animation(widget, version))
+        elif version == "deactivation":
             widget.update()
-            if widget["width"] < 25:
-                widget.config(width=widget["width"] + 1)
-                self.after(20, lambda: self.button_animation(widget))
-        else:
-            widget.config(width=20)
+            if widget["width"] > 20:
+                widget.config(width=widget["width"] - 1)
+                self.after(20, lambda: self.button_animation(widget, version))
 
     def reset_window(self):
         for widget in self.widgets.values():

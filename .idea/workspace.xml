@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a623f1e-5620-435f-bfd0-03d609091ee6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/False-Insignia.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/False-Insignia.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/False-Insignia.py" beforeDir="false" afterPath="$PROJECT_DIR$/False-Insignia.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,28 +62,28 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="md" value="197" />
-          <entry key="py" value="5942" />
+          <entry key="md" value="231" />
+          <entry key="py" value="6432" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Markdown" value="3" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="7" />
+          <entry key="Python" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Markdown" value="197" />
-          <entry key="Python" value="5942" />
+          <entry key="Markdown" value="231" />
+          <entry key="Python" value="6432" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="LICENSE" value="1" />
           <entry key="md" value="3" />
-          <entry key="py" value="7" />
+          <entry key="py" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -91,36 +94,45 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/False-Insignia.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="29" column="31" lean-forward="true" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
+            <state relative-caret-position="404">
+              <caret line="68" column="52" selection-start-line="68" selection-start-column="52" selection-end-line="68" selection-end-column="52" />
               <folding>
                 <element signature="n#!!doc" />
                 <element signature="e#69#801#1" />
-                <element signature="e#3004#3106#0" />
-                <element signature="e#3146#3150#0" />
+                <element signature="e#1000#1371#0" />
+                <element signature="e#2935#3037#0" />
                 <element signature="e#3185#3189#0" />
                 <element signature="e#3227#3231#0" />
                 <element signature="e#3268#4355#0" />
                 <element signature="e#3356#3425#0" />
                 <element signature="e#4393#4397#0" />
-                <element signature="e#4452#6282#0" />
-                <element signature="e#4551#6282#0" />
-                <element signature="e#5019#5088#0" />
-                <element signature="e#5131#6282#0" />
-                <element signature="e#5193#6282#0" />
-                <element signature="e#5256#6282#0" />
-                <element signature="e#5862#6282#0" />
-                <element signature="e#6197#6282#0" />
-                <element signature="e#6338#7234#0" />
-                <element signature="e#6376#7234#0" />
-                <element signature="e#6429#7234#0" />
-                <element signature="e#6483#7234#0" />
-                <element signature="e#6565#6638#0" />
-                <element signature="e#6689#7234#0" />
-                <element signature="e#6755#7234#0" />
-                <element signature="e#6822#7234#0" />
-                <element signature="e#6930#7234#0" />
-                <element signature="e#7145#7234#0" />
+                <element signature="e#4452#6322#0" />
+                <element signature="e#4501#6322#0" />
+                <element signature="e#4551#6322#0" />
+                <element signature="e#5019#5102#0" />
+                <element signature="e#5145#6322#0" />
+                <element signature="e#5207#6322#0" />
+                <element signature="e#5270#6322#0" />
+                <element signature="e#5876#6322#0" />
+                <element signature="e#6275#6374#0" />
+                <element signature="e#6510#7896#0" />
+                <element signature="e#6548#7896#0" />
+                <element signature="e#6633#7896#0" />
+                <element signature="e#6687#7896#0" />
+                <element signature="e#6737#6854#0" />
+                <element signature="e#6937#7537#0" />
+                <element signature="e#6971#7735#0" />
+                <element signature="e#7038#7735#0" />
+                <element signature="e#7240#7463#0" />
+                <element signature="e#7528#8167#0" />
+                <element signature="e#7568#7809#0" />
+                <element signature="e#7505#7705#0" />
+                <element signature="e#7582#7705#0" />
+                <element signature="e#8030#8219#0" />
+                <element signature="e#8099#8219#0" />
+                <element signature="e#7750#7873#0" />
+                <element signature="e#7906#7910#0" />
+                <element signature="e#7944#7992#0" />
               </folding>
             </state>
           </provider>
@@ -151,6 +163,7 @@
     <findStrings>
       <find>fpixels</find>
       <find>reset(</find>
+      <find>config(width=</find>
     </findStrings>
     <replaceStrings>
       <replace>reset_window(</replace>
@@ -168,8 +181,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="72" />
-    <option name="y" value="-8" />
+    <option name="x" value="213" />
+    <option name="y" value="-16" />
     <option name="width" value="1400" />
     <option name="height" value="920" />
   </component>
@@ -178,7 +191,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -190,6 +202,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -277,15 +290,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24625" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.31885594" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.31937173" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -310,39 +323,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/tkinter/__init__.py" />
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/tkinter/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="2295" selection-start-line="2295" selection-end-line="2295" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/False-Insignia.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="29" column="31" lean-forward="true" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
+        <state relative-caret-position="404">
+          <caret line="68" column="52" selection-start-line="68" selection-start-column="52" selection-end-line="68" selection-end-column="52" />
           <folding>
             <element signature="n#!!doc" />
             <element signature="e#69#801#1" />
-            <element signature="e#3004#3106#0" />
-            <element signature="e#3146#3150#0" />
+            <element signature="e#1000#1371#0" />
+            <element signature="e#2935#3037#0" />
             <element signature="e#3185#3189#0" />
             <element signature="e#3227#3231#0" />
             <element signature="e#3268#4355#0" />
             <element signature="e#3356#3425#0" />
             <element signature="e#4393#4397#0" />
-            <element signature="e#4452#6282#0" />
-            <element signature="e#4551#6282#0" />
-            <element signature="e#5019#5088#0" />
-            <element signature="e#5131#6282#0" />
-            <element signature="e#5193#6282#0" />
-            <element signature="e#5256#6282#0" />
-            <element signature="e#5862#6282#0" />
-            <element signature="e#6197#6282#0" />
-            <element signature="e#6338#7234#0" />
-            <element signature="e#6376#7234#0" />
-            <element signature="e#6429#7234#0" />
-            <element signature="e#6483#7234#0" />
-            <element signature="e#6565#6638#0" />
-            <element signature="e#6689#7234#0" />
-            <element signature="e#6755#7234#0" />
-            <element signature="e#6822#7234#0" />
-            <element signature="e#6930#7234#0" />
-            <element signature="e#7145#7234#0" />
+            <element signature="e#4452#6322#0" />
+            <element signature="e#4501#6322#0" />
+            <element signature="e#4551#6322#0" />
+            <element signature="e#5019#5102#0" />
+            <element signature="e#5145#6322#0" />
+            <element signature="e#5207#6322#0" />
+            <element signature="e#5270#6322#0" />
+            <element signature="e#5876#6322#0" />
+            <element signature="e#6275#6374#0" />
+            <element signature="e#6510#7896#0" />
+            <element signature="e#6548#7896#0" />
+            <element signature="e#6633#7896#0" />
+            <element signature="e#6687#7896#0" />
+            <element signature="e#6737#6854#0" />
+            <element signature="e#6937#7537#0" />
+            <element signature="e#6971#7735#0" />
+            <element signature="e#7038#7735#0" />
+            <element signature="e#7240#7463#0" />
+            <element signature="e#7528#8167#0" />
+            <element signature="e#7568#7809#0" />
+            <element signature="e#7505#7705#0" />
+            <element signature="e#7582#7705#0" />
+            <element signature="e#8030#8219#0" />
+            <element signature="e#8099#8219#0" />
+            <element signature="e#7750#7873#0" />
+            <element signature="e#7906#7910#0" />
+            <element signature="e#7944#7992#0" />
           </folding>
         </state>
       </provider>
