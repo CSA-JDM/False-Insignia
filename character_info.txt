@@ -1,0 +1,14 @@
+<Stats>
+    Vitality - Max HP UP
+    Endurance - Max Stamina UP; Equip Burden UP; Bleed Resist UP
+    Strength - Meets Strength requirements for equipment; Increases damage on weapons with STR scaling
+    Dexterity - Meets Dexterity requirements for equipment; Increases damage on weapons with DEX scaling; Increases the casting speed of pyromancies, sorceries and miracles
+    Intelligence - Meets Intelligence requirements for equipment and sorceries; Increases damage on weapons with INT scaling; Magic Adjustment UP for most catalysts
+    Faith - Meets Faith requirements for equipment and miracles; Increases damage on weapons with FTH scaling; Magic Adjustment UP for most talismans; Magic Defense UP
+</Stats>
+<Stats-Info>
+    HP - Hit points. When this reaches zero, the character dies.
+    Stamina - Required for various actions.
+    Physical Defense - Defense against physical attacks.
+    Magic Defense - Defense against magic attacks.
+</Stats-Info>

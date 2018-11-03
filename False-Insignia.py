@@ -19,6 +19,7 @@ Copyright (C) 2018  Jacob Meadows
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import tkinter as tk
+from tkinter import ttk as ttk
 import ctypes
 
 
@@ -33,17 +34,18 @@ class App(tk.Frame):
         self.master.geometry(f"{screensize[0]}x{screensize[1]}+0+0")
         self.master.overrideredirect(1)
         super().__init__(self.master, width=screensize[0], height=screensize[1])
-        self.active = [0]
         self.place(relx=0, rely=0)
 
+        self.active = [0]
         self.widgets = dict()
+        self.vars = dict()
         self.main_menu()
 
     def main_menu(self):
         self.reset_window()
         self.widgets["title_label"] = tk.Label(self, text="False Insignia", font=("Times New Roman", 60, "bold"))
         self.widgets["title_label"].place(relx=5 / screensize[0], rely=5 / screensize[1])
-        self.widgets["new_game_button"] = tk.Button(self, text="New Game", command=self.username_input, width=20,
+        self.widgets["new_game_button"] = tk.Button(self, text="New Game", command=self.character_sheet, width=20,
                                                     height=2, font=("Times New Roman", 20))
         self.widgets["new_game_button"].place(relx=5 / screensize[0], rely=245 / screensize[1])
         self.widgets["load_game_button"] = tk.Button(self, text="Load Game", command=self.load_menu, width=20,
@@ -61,14 +63,60 @@ class App(tk.Frame):
             if isinstance(widget, tk.Button):
                 widget.bind("<Motion>", self.mouse_button_highlight)
 
-    def username_input(self):
+    def character_sheet(self):
         self.reset_window()
-        self.widgets["title_label"] = tk.Label(self, text="Character Sheet", font=("Times New Roman", 40, "bold"))
-        self.widgets["title_label"].place(relx=5 / screensize[0], rely=5 / screensize[1])
+        self.widgets["character_sheet_label"] = tk.Label(self, text="Character Sheet",
+                                                         font=("Times New Roman", 40, "bold"))
+        self.widgets["character_sheet_label"].place(relx=5 / screensize[0], rely=5 / screensize[1])
         self.widgets["username_label"] = tk.Label(self, text="Name:", font=("Times New Roman", 20))
         self.widgets["username_label"].place(relx=5 / screensize[0], rely=100 / screensize[1])
         self.widgets["username_entry"] = tk.Entry(self, font=("Times New Roman", 20))
         self.widgets["username_entry"].place(relx=100 / screensize[0], rely=100 / screensize[1])
+        self.widgets["stats_label"] = tk.Label(self, text="Stats:", font=("Times New Roman", 20))
+        self.widgets["stats_label"].place(relx=5 / screensize[0], rely=195 / screensize[1])
+        self.vars["available_points"] = tk.StringVar(value="Available Points: 20")
+        self.widgets["available_points_label"] = tk.Label(self, textvariable=self.vars["available_points"],
+                                                          font=("Times New Roman", 16))
+        self.widgets["available_points_label"].place(relx=400 / screensize[0], rely=100 / screensize[1])
+        try:
+            character_info_txt = open("character_info.txt", "r")
+            character_info = character_info_txt.readline()
+            y_values = [195, 220]
+            while character_info:
+                if character_info == "<Stats>\n":
+                    character_info = character_info_txt.readline().strip()
+                    while character_info != "</Stats>":
+                        stat_name, stat_description = character_info.split(" - ")
+                        stat_description = stat_description.replace("; ", "\n")
+                        self.widgets[f"{stat_name.lower()}_label"] = tk.Label(self, text=f"{stat_name}",
+                                                                              font=("Times New Roman", 16))
+                        self.widgets[f"{stat_name.lower()}_label"].place(relx=100 / screensize[0],
+                                                                         rely=y_values[0] / screensize[1])
+                        self.widgets[f"{stat_name.lower()}_value_button"] = tk.Button(self, text="5",
+                                                                                      font=("Times New Roman", 16))
+                        self.widgets[f"{stat_name.lower()}_value_button"].place(relx=550 / screensize[0],
+                                                                                rely=(y_values[0] - 14) / screensize[1])
+                        self.widgets[f"{stat_name.lower()}_value_button"].bind("<Button>", self.stat_change)
+                        self.widgets[f"{stat_name.lower()}_value_button"].bind("<Key>", self.stat_change)
+                        self.widgets[f"{stat_name.lower()}_description_label"] = tk.Label(
+                            self, text=f"{stat_description}", font=("Times New Roman", 12), justify="left"
+                        )
+                        self.widgets[f"{stat_name.lower()}_label"].update()
+                        self.widgets[f"{stat_name.lower()}_description_label"].place(relx=100 / screensize[0],
+                                                                                     rely=y_values[1] / screensize[1])
+                        self.widgets[f"{stat_name.lower()}_separator"] = ttk.Separator(self, orient="horizontal")
+                        self.widgets[f"{stat_name.lower()}_label"].update()
+                        self.widgets[f"{stat_name.lower()}_separator"].place(relx=100 / screensize[0],
+                                                                             rely=y_values[1] / screensize[1],
+                                                                             relwidth=450 / screensize[0])
+                        y_translation = self.widgets[f"{stat_name.lower()}_label"].winfo_height() + \
+                            self.widgets[f"{stat_name.lower()}_description_label"].winfo_height()
+                        y_values = [y_values[0] + y_translation, y_values[1] + y_translation]
+                        character_info = character_info_txt.readline().strip()
+                character_info = character_info_txt.readline()
+        except FileNotFoundError:
+            self.widgets["error_label"] = tk.Label(self, text="MISSING VITAL FILES", font=("Times New Roman", 20))
+            self.widgets["error_label"].place(relx=100 / screensize[0], rely=195 / screensize[1])
 
     def load_menu(self):
         pass
@@ -97,6 +145,44 @@ class App(tk.Frame):
 
     def introduction(self):
         pass
+
+    def stat_change(self, event):
+        if event.keysym == "space" or event.keysym == "Return":
+            if event.state:
+                if isinstance(self.master.focus_get(), tk.Button) and \
+                        int(self.master.focus_get().config("text")[-1]) > 0:
+                    self.vars["available_points"].set(self.vars["available_points"].get().split(": ")[0] + ": " +
+                                                      str(int(self.vars["available_points"].get().split(": ")[1]) + 1))
+                    self.master.focus_get().config(text=int(self.master.focus_get().config("text")[-1]) - 1)
+            else:
+                if isinstance(self.master.focus_get(), tk.Button) and \
+                        int(self.vars["available_points"].get().split(": ")[1]) > 0:
+                    self.vars["available_points"].set(self.vars["available_points"].get().split(": ")[0] + ": " +
+                                                      str(int(self.vars["available_points"].get().split(": ")[1]) - 1))
+                    self.master.focus_get().config(text=int(self.master.focus_get().config("text")[-1]) + 1)
+        elif event.num:
+            for widget in self.widgets.values():
+                if isinstance(widget, tk.Button):
+                    widget.update()
+                    widget_x, widget_y = widget.winfo_geometry().split("+")[1:]
+                    widget_x, widget_y = int(widget_x), int(widget_y)
+                    widget_width, widget_height = int(widget.winfo_width()),\
+                                                  int(widget.winfo_height())
+                    if event.x_root in range(widget_x, widget_x + widget_width) and \
+                            event.y_root in range(widget_y, widget_y + widget_height):
+                        if event.num == 1 and not event.state and \
+                                int(self.vars["available_points"].get().split(": ")[1]) > 0:
+                            self.vars["available_points"].set(
+                                self.vars["available_points"].get().split(": ")[0] + ": " +
+                                str(int(self.vars["available_points"].get().split(": ")[1]) - 1)
+                            )
+                            widget.config(text=int(widget.config("text")[-1]) + 1)
+                        elif (event.num == 3 or (event.num == 1 and event.state))and int(widget.config("text")[-1]) > 0:
+                            self.vars["available_points"].set(
+                                self.vars["available_points"].get().split(": ")[0] + ": " +
+                                str(int(self.vars["available_points"].get().split(": ")[1]) + 1)
+                            )
+                            widget.config(text=int(widget.config("text")[-1]) - 1)
 
     def mouse_button_highlight(self, event):
         for widget in self.widgets.values():
@@ -162,6 +248,8 @@ class App(tk.Frame):
                 self.after(20, lambda: self.button_animation(widget, version))
 
     def reset_window(self):
+        self.master.unbind("<Motion>")
+        self.master.unbind("<KeyRelease>")
         for widget in self.widgets.values():
             widget.destroy()
         self.widgets = dict()
