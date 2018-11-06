@@ -114,9 +114,46 @@ class App(tk.Frame):
                         y_values = [y_values[0] + y_translation, y_values[1] + y_translation]
                         character_info = character_info_txt.readline().strip()
                 character_info = character_info_txt.readline()
+                y_values = [195, 220]
+                if character_info == "<Stats-Info>\n":
+                    character_info = character_info_txt.readline().strip()
+                    while character_info != "</Stats-Info>":
+                        stat_name, stat_description = character_info.split(" - ")
+                        stat_description = stat_description.replace("; ", "\n")
+                        self.widgets[f"{stat_name.lower()}_label"] = tk.Label(self, text=f"{stat_name}",
+                                                                              font=("Times New Roman", 16))
+                        self.widgets[f"{stat_name.lower()}_label"].place(relx=600 / screensize[0],
+                                                                         rely=y_values[0] / screensize[1])
+                        self.widgets[f"{stat_name.lower()}_value_label"] = tk.Label(self, text="005",
+                                                                                    font=("Times New Roman", 16))
+                        self.widgets[f"{stat_name.lower()}_value_label"].place(relx=950 / screensize[0],
+                                                                               rely=y_values[0] / screensize[1])
+                        self.widgets[f"{stat_name.lower()}_description_label"] = tk.Label(
+                            self, text=f"{stat_description}", font=("Times New Roman", 12), justify="left"
+                        )
+                        self.widgets[f"{stat_name.lower()}_description_label"].place(relx=600 / screensize[0],
+                                                                                     rely=y_values[1] / screensize[1])
+                        self.widgets[f"{stat_name.lower()}_label"].update()
+                        self.widgets[f"{stat_name.lower()}_separator"] = ttk.Separator(self, orient="horizontal")
+                        self.widgets[f"{stat_name.lower()}_separator"].place(relx=600 / screensize[0],
+                                                                             rely=y_values[1] / screensize[1],
+                                                                             relwidth=400 / screensize[0])
+                        y_translation = self.widgets[f"{stat_name.lower()}_label"].winfo_height() + \
+                            self.widgets[f"{stat_name.lower()}_description_label"].winfo_height()
+                        y_values = [y_values[0] + y_translation, y_values[1] + y_translation]
+                        character_info = character_info_txt.readline().strip()
         except FileNotFoundError:
             self.widgets["error_label"] = tk.Label(self, text="MISSING VITAL FILES", font=("Times New Roman", 20))
             self.widgets["error_label"].place(relx=100 / screensize[0], rely=195 / screensize[1])
+        self.widgets["back_button"] = tk.Button(self, text="Back", font=("Times New Roman", 16), command=self.main_menu)
+        self.widgets["back_button"].place(relx=5 / screensize[0], rely=(screensize[1] - 5) / screensize[1], anchor="sw")
+        self.widgets["reset_button"] = tk.Button(self, text="Reset", font=("Times New Roman", 16),
+                                                 command=self.character_sheet)
+        self.widgets["reset_button"].place(relx=(screensize[0] - 95) / screensize[0],
+                                           rely=(screensize[1] - 5) / screensize[1], anchor="se")
+        self.widgets["submit_button"] = tk.Button(self, text="Submit", font=("Times New Roman", 16))
+        self.widgets["submit_button"].place(relx=(screensize[0] - 5) / screensize[0],
+                                            rely=(screensize[1] - 5) / screensize[1], anchor="se")
 
     def load_menu(self):
         pass
@@ -148,7 +185,7 @@ class App(tk.Frame):
 
     def stat_change(self, event):
         if event.keysym == "space" or event.keysym == "Return":
-            if event.state:
+            if event.state % 2 == 1:
                 if isinstance(self.master.focus_get(), tk.Button) and \
                         int(self.master.focus_get().config("text")[-1]) > 0:
                     self.vars["available_points"].set(self.vars["available_points"].get().split(": ")[0] + ": " +
@@ -167,17 +204,18 @@ class App(tk.Frame):
                     widget_x, widget_y = widget.winfo_geometry().split("+")[1:]
                     widget_x, widget_y = int(widget_x), int(widget_y)
                     widget_width, widget_height = int(widget.winfo_width()),\
-                                                  int(widget.winfo_height())
+                        int(widget.winfo_height())
                     if event.x_root in range(widget_x, widget_x + widget_width) and \
                             event.y_root in range(widget_y, widget_y + widget_height):
-                        if event.num == 1 and not event.state and \
+                        if event.num == 1 and event.state % 2 == 0 and \
                                 int(self.vars["available_points"].get().split(": ")[1]) > 0:
                             self.vars["available_points"].set(
                                 self.vars["available_points"].get().split(": ")[0] + ": " +
                                 str(int(self.vars["available_points"].get().split(": ")[1]) - 1)
                             )
                             widget.config(text=int(widget.config("text")[-1]) + 1)
-                        elif (event.num == 3 or (event.num == 1 and event.state))and int(widget.config("text")[-1]) > 0:
+                        elif (event.num == 3 or (event.num == 1 and event.state % 2 == 1)) and \
+                                int(widget.config("text")[-1]) > 0:
                             self.vars["available_points"].set(
                                 self.vars["available_points"].get().split(": ")[0] + ": " +
                                 str(int(self.vars["available_points"].get().split(": ")[1]) + 1)
