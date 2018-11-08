@@ -20,11 +20,15 @@ Copyright (C) 2018  Jacob Meadows
 """
 import tkinter as tk
 from tkinter import ttk as ttk
-import ctypes
 
 
-user32 = ctypes.windll.user32
-screensize = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
+try:
+    import ctypes
+    user32 = ctypes.windll.user32
+    screensize = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
+except ModuleNotFoundError:
+    screensize = (1280, 720)
+    print("Unable to determine screensize; defaulted to 1280x720.")
 
 
 class App(tk.Frame):
@@ -97,7 +101,8 @@ class App(tk.Frame):
                         self.widgets[f"{stat_name.lower()}_value_button"].place(relx=550 / screensize[0],
                                                                                 rely=(y_values[0] - 14) / screensize[1])
                         self.widgets[f"{stat_name.lower()}_value_button"].bind("<Button>", self.stat_change)
-                        self.widgets[f"{stat_name.lower()}_value_button"].bind("<Key>", self.stat_change)
+                        self.widgets[f"{stat_name.lower()}_value_button"].bind("<KeyPress>", self.stat_change)
+                        self.widgets[f"{stat_name.lower()}_value_button"].bind("<KeyRelease>", self.stat_change)
                         self.widgets[f"{stat_name.lower()}_description_label"] = tk.Label(
                             self, text=f"{stat_description}", font=("Times New Roman", 12), justify="left"
                         )
@@ -124,7 +129,7 @@ class App(tk.Frame):
                                                                               font=("Times New Roman", 16))
                         self.widgets[f"{stat_name.lower()}_label"].place(relx=600 / screensize[0],
                                                                          rely=y_values[0] / screensize[1])
-                        self.widgets[f"{stat_name.lower()}_value_label"] = tk.Label(self, text="005",
+                        self.widgets[f"{stat_name.lower()}_value_label"] = tk.Label(self, text="0050",
                                                                                     font=("Times New Roman", 16))
                         self.widgets[f"{stat_name.lower()}_value_label"].place(relx=950 / screensize[0],
                                                                                rely=y_values[0] / screensize[1])
@@ -163,6 +168,7 @@ class App(tk.Frame):
 
     def exit_choice(self):
         self.master.unbind("<Motion>")
+        self.master.unbind("<KeyRelease>")
         for widget in self.widgets.values():
             widget.config(state="disabled")
             widget.unbind("<Motion>")
@@ -185,18 +191,22 @@ class App(tk.Frame):
 
     def stat_change(self, event):
         if event.keysym == "space" or event.keysym == "Return":
-            if event.state % 2 == 1:
-                if isinstance(self.master.focus_get(), tk.Button) and \
-                        int(self.master.focus_get().config("text")[-1]) > 0:
-                    self.vars["available_points"].set(self.vars["available_points"].get().split(": ")[0] + ": " +
-                                                      str(int(self.vars["available_points"].get().split(": ")[1]) + 1))
-                    self.master.focus_get().config(text=int(self.master.focus_get().config("text")[-1]) - 1)
-            else:
-                if isinstance(self.master.focus_get(), tk.Button) and \
-                        int(self.vars["available_points"].get().split(": ")[1]) > 0:
-                    self.vars["available_points"].set(self.vars["available_points"].get().split(": ")[0] + ": " +
-                                                      str(int(self.vars["available_points"].get().split(": ")[1]) - 1))
-                    self.master.focus_get().config(text=int(self.master.focus_get().config("text")[-1]) + 1)
+            if event.type == tk.EventType.KeyPress:
+                self.after(1, lambda: event.widget.config(state="disabled", disabledforeground="black"))
+                if event.state % 2 == 1:
+                    if isinstance(event.widget, tk.Button) and \
+                            int(event.widget.config("text")[-1]) > 0:
+                        self.vars["available_points"].set(self.vars["available_points"].get().split(": ")[0] + ": " +
+                                                          str(int(self.vars["available_points"].get().split(": ")[1]) + 1))
+                        event.widget.config(text=int(self.master.focus_get().config("text")[-1]) - 1)
+                elif event.state % 2 == 0:
+                    if isinstance(self.master.focus_get(), tk.Button) and \
+                            int(self.vars["available_points"].get().split(": ")[1]) > 0:
+                        self.vars["available_points"].set(self.vars["available_points"].get().split(": ")[0] + ": " +
+                                                          str(int(self.vars["available_points"].get().split(": ")[1]) - 1))
+                        self.master.focus_get().config(text=int(self.master.focus_get().config("text")[-1]) + 1)
+            elif event.type == tk.EventType.KeyRelease:
+                event.widget.config(state="normal")
         elif event.num:
             for widget in self.widgets.values():
                 if isinstance(widget, tk.Button):
@@ -254,22 +264,15 @@ class App(tk.Frame):
 
     def button_button_highlight(self, event):
         if event.keysym == "Tab":
-            break_check = False
-            for widget in self.widgets.values():
-                if isinstance(widget, tk.Button):
-                    if widget.focus_get() == widget and self.active[-1] == 0:
-                        self.active[-1] = 1
-                        self.button_animation(widget, "activation")
-                        break
-                    else:
-                        for _widget in self.widgets.values():
-                            if isinstance(_widget, tk.Button):
-                                if _widget.focus_get() != _widget and _widget["width"] != 20 and self.active[-1] == 1:
-                                    self.button_animation(_widget, "deactivation")
-                                    self.button_animation(widget.focus_get(), "activation")
-                                    break_check = True
-                                    break
-                        if break_check:
+            if self.active[-1] == 0:
+                self.active[-1] = 1
+                self.button_animation(event.widget, "activation")
+            else:
+                for _widget in self.widgets.values():
+                    if isinstance(_widget, tk.Button):
+                        if _widget.focus_get() != _widget and _widget["width"] != 20 and self.active[-1] == 1:
+                            self.button_animation(_widget, "deactivation")
+                            self.button_animation(event.widget.focus_get(), "activation")
                             break
 
     def button_animation(self, widget, version):
