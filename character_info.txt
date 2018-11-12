@@ -1,8 +1,8 @@
 <Stats>
     Vitality - Max HP UP
     Endurance - Max Stamina UP; Equip Burden UP
-    Strength - Meets Strength requirements for equipment; Increases damage on weapons with STR scaling
-    Faith - Meets Faith requirements for equipment and miracles; Increases damage on weapons with FTH scaling; Magic Adjustment UP for most talismans; Magic Defense UP
+    Strength - Physical Defense UP; Increases damage on weapons with physical attacks
+    Faith - Increases damage on weapons with magical attacks; Magic Adjustment UP for most talismans; Magic Defense UP
 </Stats>
 <Stats-Info>
     HP - Hit points. When this reaches zero, the character dies.

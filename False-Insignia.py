@@ -230,9 +230,22 @@ class App(tk.Frame):
         self.widgets["health_progress_bar"] = tk.ttk.Progressbar(self, maximum=int(self.vars["hp"]),
                                                                  value=int(self.vars["hp"]))
         self.widgets["health_progress_bar"].place()  # todo place health bar
+        self.widgets["name_label"] = tk.Label(self, text=self.vars["username_str"].get())
+        self.widgets["name_label"].place()  # todo place name label
         self.widgets["stamina_progress_bar"] = tk.ttk.Progressbar(self, maximum=int(self.vars["stamina"]),
                                                                   value=int(self.vars["stamina"]))
         self.widgets["stamina_progress_bar"].place()  # todo place stamina bar
+        self.vars["level_int"] = tk.IntVar(value=1)
+        self.widgets["level_label"] = tk.Label(self, text=f"Level: {self.vars['level_int'].get()}")
+        self.widgets["level_label"].place()  # todo place level label
+        self.widgets["level_progress_bar"] = tk.ttk.Progressbar(self, maximum=self.vars["level_int"] * 10, value=0)
+        self.widgets["level_progress_bar"].place()  # todo place level progress bar
+        self.widgets["exit_button"] = tk.Button(self, text="Exit", command=self.exit_choice)
+        self.widgets["exit_button"].place()  # todo place exit button
+        self.widgets["save_game_button"] = tk.Button(self, text="Save")
+        self.widgets["save_game_button"].place()  # todo place save game button
+        self.widgets["load_game_button"] = tk.Button(self, text="Load")
+        self.widgets["load_game_button"].place()  # todo place load game button
 
     def stat_change(self, event):
         if event.keysym == "space" or event.keysym == "Return":
@@ -287,6 +300,8 @@ class App(tk.Frame):
                       (4 - len(str(self.widgets[f"{stat_dict[stat_name].lower()}_value_button"].cget("text") * 10)))) +
                 str(self.widgets[f"{stat_dict[stat_name].lower()}_value_button"].cget("text") * 10)
             )
+            if self.widgets[f"{stat_name.lower()}_value_label"].cget("text") == "0000":
+                self.widgets[f"{stat_name.lower()}_value_label"].config(text="0001")
             self.vars[f"{stat_name.lower()}"] = self.widgets[f"{stat_name.lower()}_value_label"].cget("text")
             self.vars[f"{stat_dict[stat_name].lower()}"] = \
                 self.widgets[f"{stat_dict[stat_name].lower()}_value_button"].cget("text")
