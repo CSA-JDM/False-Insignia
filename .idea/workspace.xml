@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/False-Insignia.py" beforeDir="false" afterPath="$PROJECT_DIR$/False-Insignia.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/character_info.txt" beforeDir="false" afterPath="$PROJECT_DIR$/character_info.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,8 +50,9 @@
     <session id="1601282089">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.126" value="1" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.146" value="1" />
           <entry key="project.open.time.179" value="1" />
@@ -58,37 +60,38 @@
           <entry key="project.open.time.27" value="1" />
           <entry key="project.open.time.30" value="2" />
           <entry key="project.open.time.37" value="1" />
+          <entry key="project.open.time.53" value="1" />
           <entry key="project.open.time.96" value="1" />
-          <entry key="project.opened" value="10" />
+          <entry key="project.opened" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="md" value="261" />
-          <entry key="py" value="10841" />
+          <entry key="md" value="295" />
+          <entry key="py" value="12548" />
           <entry key="txt" value="149" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Markdown" value="3" />
-          <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Python" value="19" />
+          <entry key="PLAIN_TEXT" value="3" />
+          <entry key="Python" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Markdown" value="261" />
+          <entry key="Markdown" value="295" />
           <entry key="PLAIN_TEXT" value="149" />
-          <entry key="Python" value="10841" />
+          <entry key="Python" value="12548" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="LICENSE" value="1" />
           <entry key="md" value="3" />
-          <entry key="py" value="19" />
-          <entry key="txt" value="1" />
+          <entry key="py" value="20" />
+          <entry key="txt" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -131,20 +134,81 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/False-Insignia.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="89" column="49" selection-start-line="89" selection-start-column="49" selection-end-line="89" selection-end-column="49" />
+            <state relative-caret-position="221">
+              <caret line="369" lean-forward="true" selection-start-line="369" selection-end-line="369" />
               <folding>
                 <element signature="n#!!doc" />
                 <element signature="e#69#801#1" />
+                <element signature="e#865#984#0" />
+                <element signature="e#1017#1109#0" />
+                <element signature="e#1137#22716#0" />
+                <element signature="e#1173#1571#0" />
+                <element signature="e#1606#3309#0" />
+                <element signature="e#3207#3309#0" />
+                <element signature="e#3350#11938#0" />
+                <element signature="e#4699#10632#0" />
+                <element signature="e#4895#10632#0" />
+                <element signature="e#4949#7908#0" />
+                <element signature="e#5084#7908#0" />
+                <element signature="e#8085#10632#0" />
+                <element signature="e#8225#10632#0" />
+                <element signature="e#10455#10655#0" />
+                <element signature="e#11671#11675#0" />
+                <element signature="e#11713#11717#0" />
+                <element signature="e#11754#12884#0" />
+                <element signature="e#11885#11954#0" />
+                <element signature="e#13228#15310#0" />
+                <element signature="e#13067#13210#0" />
+                <element signature="e#14958#15561#0" />
+                <element signature="e#15221#19013#0" />
+                <element signature="e#14757#16116#0" />
+                <element signature="e#14813#16008#0" />
+                <element signature="e#14963#15445#0" />
+                <element signature="e#15102#15445#0" />
+                <element signature="e#15509#16008#0" />
+                <element signature="e#15678#16008#0" />
+                <element signature="e#16153#17788#0" />
+                <element signature="e#16206#17788#0" />
+                <element signature="e#16260#17788#0" />
+                <element signature="e#16476#16554#0" />
+                <element signature="e#16752#17788#0" />
+                <element signature="e#16922#17258#0" />
+                <element signature="e#17452#17788#0" />
+                <element signature="e#18579#19158#0" />
+                <element signature="e#17843#19828#0" />
+                <element signature="e#17892#19828#0" />
+                <element signature="e#17942#19828#0" />
+                <element signature="e#18410#18493#0" />
+                <element signature="e#18536#19828#0" />
+                <element signature="e#18598#19828#0" />
+                <element signature="e#18661#19828#0" />
+                <element signature="e#19330#19828#0" />
+                <element signature="e#19729#19828#0" />
+                <element signature="e#19884#20485#0" />
+                <element signature="e#19922#20485#0" />
+                <element signature="e#19963#20048#0" />
+                <element signature="e#20083#20485#0" />
+                <element signature="e#20141#20485#0" />
+                <element signature="e#20200#20485#0" />
+                <element signature="e#20315#20485#0" />
+                <element signature="e#20544#21066#0" />
+                <element signature="e#20584#20825#0" />
+                <element signature="e#20625#20825#0" />
+                <element signature="e#20702#20825#0" />
+                <element signature="e#20878#21066#0" />
+                <element signature="e#20947#21066#0" />
+                <element signature="e#21104#21309#0" />
+                <element signature="e#21342#21346#0" />
+                <element signature="e#21380#21428#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
@@ -173,11 +237,13 @@
       <find>;</find>
       <find>\n</find>
       <find>Button</find>
+      <find>introduction</find>
     </findStrings>
     <replaceStrings>
       <replace>reset_window(</replace>
       <replace>\n</replace>
       <replace>;</replace>
+      <replace>main_game</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -186,8 +252,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/character_info.txt" />
         <option value="$PROJECT_DIR$/recipes" />
+        <option value="$PROJECT_DIR$/character_info.txt" />
         <option value="$PROJECT_DIR$/False-Insignia.py" />
         <option value="$PROJECT_DIR$/README.md" />
       </list>
@@ -204,7 +270,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -216,6 +281,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -304,14 +370,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1600" height="900" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3082353" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3070588" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -338,32 +403,27 @@
     </entry>
     <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1632299270/builtins.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/typing.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/tkinter/ttk.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/enum.py" />
     <entry file="file://$PROJECT_DIR$/recipes" />
     <entry file="file://C:/Program Files (x86)/Python37-32/Lib/tkinter/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/character_info.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="13" lean-forward="true" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/False-Insignia.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="89" column="49" selection-start-line="89" selection-start-column="49" selection-end-line="89" selection-end-column="49" />
-          <folding>
-            <element signature="n#!!doc" />
-            <element signature="e#69#801#1" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/tkinter/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3859">
           <caret line="230" selection-start-line="230" selection-end-line="230" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/tkinter/ttk.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="1002" column="8" selection-start-line="1002" selection-start-column="8" selection-end-line="1002" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/character_info.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -374,6 +434,78 @@
             <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/False-Insignia.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="369" lean-forward="true" selection-start-line="369" selection-end-line="369" />
+          <folding>
+            <element signature="n#!!doc" />
+            <element signature="e#69#801#1" />
+            <element signature="e#865#984#0" />
+            <element signature="e#1017#1109#0" />
+            <element signature="e#1137#22716#0" />
+            <element signature="e#1173#1571#0" />
+            <element signature="e#1606#3309#0" />
+            <element signature="e#3207#3309#0" />
+            <element signature="e#3350#11938#0" />
+            <element signature="e#4699#10632#0" />
+            <element signature="e#4895#10632#0" />
+            <element signature="e#4949#7908#0" />
+            <element signature="e#5084#7908#0" />
+            <element signature="e#8085#10632#0" />
+            <element signature="e#8225#10632#0" />
+            <element signature="e#10455#10655#0" />
+            <element signature="e#11671#11675#0" />
+            <element signature="e#11713#11717#0" />
+            <element signature="e#11754#12884#0" />
+            <element signature="e#11885#11954#0" />
+            <element signature="e#13228#15310#0" />
+            <element signature="e#13067#13210#0" />
+            <element signature="e#14958#15561#0" />
+            <element signature="e#15221#19013#0" />
+            <element signature="e#14757#16116#0" />
+            <element signature="e#14813#16008#0" />
+            <element signature="e#14963#15445#0" />
+            <element signature="e#15102#15445#0" />
+            <element signature="e#15509#16008#0" />
+            <element signature="e#15678#16008#0" />
+            <element signature="e#16153#17788#0" />
+            <element signature="e#16206#17788#0" />
+            <element signature="e#16260#17788#0" />
+            <element signature="e#16476#16554#0" />
+            <element signature="e#16752#17788#0" />
+            <element signature="e#16922#17258#0" />
+            <element signature="e#17452#17788#0" />
+            <element signature="e#18579#19158#0" />
+            <element signature="e#17843#19828#0" />
+            <element signature="e#17892#19828#0" />
+            <element signature="e#17942#19828#0" />
+            <element signature="e#18410#18493#0" />
+            <element signature="e#18536#19828#0" />
+            <element signature="e#18598#19828#0" />
+            <element signature="e#18661#19828#0" />
+            <element signature="e#19330#19828#0" />
+            <element signature="e#19729#19828#0" />
+            <element signature="e#19884#20485#0" />
+            <element signature="e#19922#20485#0" />
+            <element signature="e#19963#20048#0" />
+            <element signature="e#20083#20485#0" />
+            <element signature="e#20141#20485#0" />
+            <element signature="e#20200#20485#0" />
+            <element signature="e#20315#20485#0" />
+            <element signature="e#20544#21066#0" />
+            <element signature="e#20584#20825#0" />
+            <element signature="e#20625#20825#0" />
+            <element signature="e#20702#20825#0" />
+            <element signature="e#20878#21066#0" />
+            <element signature="e#20947#21066#0" />
+            <element signature="e#21104#21309#0" />
+            <element signature="e#21342#21346#0" />
+            <element signature="e#21380#21428#0" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -74,11 +74,17 @@ class App(tk.Frame):
         self.widgets["character_sheet_label"].place(relx=5 / screensize[0], rely=5 / screensize[1])
         self.widgets["username_label"] = tk.Label(self, text="Name:", font=("Times New Roman", 20))
         self.widgets["username_label"].place(relx=5 / screensize[0], rely=100 / screensize[1])
-        self.widgets["username_entry"] = tk.Entry(self, font=("Times New Roman", 20))
+        self.vars["username_str"] = tk.StringVar(
+            value=self.vars["username_str"].get() if "username_str" in self.vars else ""
+        )
+        self.widgets["username_entry"] = tk.Entry(self, font=("Times New Roman", 20), textvar=self.vars["username_str"])
         self.widgets["username_entry"].place(relx=100 / screensize[0], rely=100 / screensize[1])
+        self.widgets["username_entry"].bind("<KeyRelease>", self.stat_change)
         self.widgets["stats_label"] = tk.Label(self, text="Stats:", font=("Times New Roman", 20))
         self.widgets["stats_label"].place(relx=5 / screensize[0], rely=195 / screensize[1])
-        self.vars["available_points"] = tk.StringVar(value="Available Points: 20")
+        self.vars["available_points"] = tk.StringVar(
+            value=self.vars["available_points"].get() if "available_points" in self.vars else "Available Points: 20"
+        )
         self.widgets["available_points_label"] = tk.Label(self, textvariable=self.vars["available_points"],
                                                           font=("Times New Roman", 16))
         self.widgets["available_points_label"].place(relx=400 / screensize[0], rely=100 / screensize[1])
@@ -96,8 +102,10 @@ class App(tk.Frame):
                                                                               font=("Times New Roman", 16))
                         self.widgets[f"{stat_name.lower()}_label"].place(relx=100 / screensize[0],
                                                                          rely=y_values[0] / screensize[1])
-                        self.widgets[f"{stat_name.lower()}_value_button"] = tk.Button(self, text="5",
-                                                                                      font=("Times New Roman", 16))
+                        self.widgets[f"{stat_name.lower()}_value_button"] = tk.Button(
+                            self, text=self.vars[f"{stat_name.lower()}"] if f"{stat_name.lower()}" in self.vars else 5,
+                            font=("Times New Roman", 16)
+                        )
                         self.widgets[f"{stat_name.lower()}_value_button"].place(relx=550 / screensize[0],
                                                                                 rely=(y_values[0] - 14) / screensize[1])
                         self.widgets[f"{stat_name.lower()}_value_button"].bind("<Button>", self.stat_change)
@@ -129,8 +137,11 @@ class App(tk.Frame):
                                                                               font=("Times New Roman", 16))
                         self.widgets[f"{stat_name.lower()}_label"].place(relx=600 / screensize[0],
                                                                          rely=y_values[0] / screensize[1])
-                        self.widgets[f"{stat_name.lower()}_value_label"] = tk.Label(self, text="0050",
-                                                                                    font=("Times New Roman", 16))
+                        self.widgets[f"{stat_name.lower()}_value_label"] = tk.Label(
+                            self,
+                            text=self.vars[f"{stat_name.lower()}"] if f"{stat_name.lower()}" in self.vars else "0050",
+                            font=("Times New Roman", 16)
+                        )
                         self.widgets[f"{stat_name.lower()}_value_label"].place(relx=950 / screensize[0],
                                                                                rely=y_values[0] / screensize[1])
                         self.widgets[f"{stat_name.lower()}_description_label"] = tk.Label(
@@ -153,10 +164,11 @@ class App(tk.Frame):
         self.widgets["back_button"] = tk.Button(self, text="Back", font=("Times New Roman", 16), command=self.main_menu)
         self.widgets["back_button"].place(relx=5 / screensize[0], rely=(screensize[1] - 5) / screensize[1], anchor="sw")
         self.widgets["reset_button"] = tk.Button(self, text="Reset", font=("Times New Roman", 16),
-                                                 command=self.character_sheet)
+                                                 command=lambda: [self.vars.clear(), self.character_sheet()])
         self.widgets["reset_button"].place(relx=(screensize[0] - 95) / screensize[0],
                                            rely=(screensize[1] - 5) / screensize[1], anchor="se")
-        self.widgets["submit_button"] = tk.Button(self, text="Submit", font=("Times New Roman", 16))
+        self.widgets["submit_button"] = tk.Button(self, text="Submit", font=("Times New Roman", 16), state="disabled",
+                                                  command=self.character_selection_choice)
         self.widgets["submit_button"].place(relx=(screensize[0] - 5) / screensize[0],
                                             rely=(screensize[1] - 5) / screensize[1], anchor="se")
 
@@ -186,8 +198,41 @@ class App(tk.Frame):
             relx=(screensize[0] / 2) / screensize[0], rely=(screensize[1] / 2) / screensize[1], anchor="center"
         )
 
-    def introduction(self):
-        pass
+    def character_selection_choice(self):
+        self.master.unbind("<Motion>")
+        self.master.unbind("<KeyRelease>")
+        for widget in self.widgets.values():
+            try:
+                widget.config(state="disabled")
+            except tk.TclError:
+                pass
+            widget.unbind("<Motion>")
+        self.widgets["character_selection_frame"] = tk.Frame(self, width=200, height=90)
+        self.widgets["character_selection_label"] = tk.Message(self.widgets["character_selection_frame"], width=150,
+                                                               text="Are you sure you are okay with these choices?",
+                                                               justify="center")
+        self.widgets["character_selection_label"].place(x=90, y=30, anchor="center")
+        self.widgets["character_selection_yes_button"] = tk.Button(self.widgets["character_selection_frame"],
+                                                                   text="Yes", command=self.main_game, width=10)
+        self.widgets["character_selection_yes_button"].place(x=0, y=60)
+        self.widgets["character_selection_yes_button"] = tk.Button(self.widgets["character_selection_frame"],
+                                                                   text="No", command=self.character_sheet, width=10)
+        self.widgets["character_selection_yes_button"].place(x=100, y=60)
+        self.widgets["character_selection_frame"].place(x=0, y=0)
+        self.widgets["character_selection_frame"].update()
+        self.widgets["character_selection_frame"].place(
+            relx=(screensize[0] / 2) / screensize[0], rely=(screensize[1] / 2) / screensize[1], anchor="center"
+        )
+
+    def main_game(self):
+        self.reset_window()
+        self.vars.pop("available_points")
+        self.widgets["health_progress_bar"] = tk.ttk.Progressbar(self, maximum=int(self.vars["hp"]),
+                                                                 value=int(self.vars["hp"]))
+        self.widgets["health_progress_bar"].place()  # todo place health bar
+        self.widgets["stamina_progress_bar"] = tk.ttk.Progressbar(self, maximum=int(self.vars["stamina"]),
+                                                                  value=int(self.vars["stamina"]))
+        self.widgets["stamina_progress_bar"].place()  # todo place stamina bar
 
     def stat_change(self, event):
         if event.keysym == "space" or event.keysym == "Return":
@@ -196,14 +241,18 @@ class App(tk.Frame):
                 if event.state % 2 == 1:
                     if isinstance(event.widget, tk.Button) and \
                             int(event.widget.config("text")[-1]) > 0:
-                        self.vars["available_points"].set(self.vars["available_points"].get().split(": ")[0] + ": " +
-                                                          str(int(self.vars["available_points"].get().split(": ")[1]) + 1))
+                        self.vars["available_points"].set(
+                            self.vars["available_points"].get().split(": ")[0] + ": " +
+                            str(int(self.vars["available_points"].get().split(": ")[1]) + 1)
+                        )
                         event.widget.config(text=int(self.master.focus_get().config("text")[-1]) - 1)
                 elif event.state % 2 == 0:
                     if isinstance(self.master.focus_get(), tk.Button) and \
                             int(self.vars["available_points"].get().split(": ")[1]) > 0:
-                        self.vars["available_points"].set(self.vars["available_points"].get().split(": ")[0] + ": " +
-                                                          str(int(self.vars["available_points"].get().split(": ")[1]) - 1))
+                        self.vars["available_points"].set(
+                            self.vars["available_points"].get().split(": ")[0] + ": " +
+                            str(int(self.vars["available_points"].get().split(": ")[1]) - 1)
+                        )
                         self.master.focus_get().config(text=int(self.master.focus_get().config("text")[-1]) + 1)
             elif event.type == tk.EventType.KeyRelease:
                 event.widget.config(state="normal")
@@ -231,6 +280,20 @@ class App(tk.Frame):
                                 str(int(self.vars["available_points"].get().split(": ")[1]) + 1)
                             )
                             widget.config(text=int(widget.config("text")[-1]) - 1)
+        stat_dict = {"HP": "Vitality", "Stamina": "Endurance", "Physical Defense": "Strength", "Magic Defense": "Faith"}
+        for stat_name in stat_dict:
+            self.widgets[f"{stat_name.lower()}_value_label"].config(
+                text=("0" *
+                      (4 - len(str(self.widgets[f"{stat_dict[stat_name].lower()}_value_button"].cget("text") * 10)))) +
+                str(self.widgets[f"{stat_dict[stat_name].lower()}_value_button"].cget("text") * 10)
+            )
+            self.vars[f"{stat_name.lower()}"] = self.widgets[f"{stat_name.lower()}_value_label"].cget("text")
+            self.vars[f"{stat_dict[stat_name].lower()}"] = \
+                self.widgets[f"{stat_dict[stat_name].lower()}_value_button"].cget("text")
+        if self.vars["available_points"].get()[-2:] == " 0" and self.vars["username_str"].get().strip() != "":
+            self.widgets["submit_button"].config(state="normal")
+        else:
+            self.widgets["submit_button"].config(state="disabled")
 
     def mouse_button_highlight(self, event):
         for widget in self.widgets.values():
