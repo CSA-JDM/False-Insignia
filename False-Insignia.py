@@ -53,14 +53,14 @@ class App(tk.Frame):
                                                     height=2, font=("Times New Roman", 20))
         self.widgets["new_game_button"].place(relx=5 / screensize[0], rely=245 / screensize[1])
         self.widgets["load_game_button"] = tk.Button(self, text="Load Game", command=self.load_menu, width=20,
-                                                     height=2, font=("Times New Roman", 20))
+                                                     height=2, font=("Times New Roman", 20), state="disabled")
         self.widgets["load_game_button"].place(relx=5 / screensize[0], rely=365 / screensize[1])
         self.widgets["options_button"] = tk.Button(self, text="Options", command=self.options_menu, width=20, height=2,
-                                                   font=("Times New Roman", 20))
+                                                   font=("Times New Roman", 20), state="disabled")
         self.widgets["options_button"].place(relx=5 / screensize[0], rely=485 / screensize[1])
-        self.widgets["exit_button"] = tk.Button(self, text="Exit", command=self.exit_choice, width=20, height=2,
+        self.widgets["quit_button"] = tk.Button(self, text="Quit", command=self.quit_choice, width=20, height=2,
                                                 font=("Times New Roman", 20))
-        self.widgets["exit_button"].place(relx=5 / screensize[0], rely=605 / screensize[1])
+        self.widgets["quit_button"].place(relx=5 / screensize[0], rely=605 / screensize[1])
         self.master.bind("<Motion>", self.mouse_button_highlight)
         self.master.bind("<KeyRelease>", self.button_button_highlight)
         for widget in self.widgets.values():
@@ -178,23 +178,26 @@ class App(tk.Frame):
     def options_menu(self):
         pass
 
-    def exit_choice(self):
+    def quit_choice(self):
         self.master.unbind("<Motion>")
         self.master.unbind("<KeyRelease>")
         for widget in self.widgets.values():
-            widget.config(state="disabled")
+            try:
+                widget.config(state="disabled")
+            except tk.TclError:
+                pass
             widget.unbind("<Motion>")
-        self.widgets["exit_frame"] = tk.Frame(self, width=200, height=90)
-        self.widgets["exit_label"] = tk.Label(self.widgets["exit_frame"], text="Are you sure you want to quit?")
-        self.widgets["exit_label"].place(x=90, y=30, anchor="center")
-        self.widgets["exit_yes_button"] = tk.Button(self.widgets["exit_frame"], text="Yes", command=self.quit, width=10)
-        self.widgets["exit_yes_button"].place(x=0, y=60)
-        self.widgets["exit_yes_button"] = tk.Button(self.widgets["exit_frame"], text="No", command=self.main_menu,
+        self.widgets["quit_frame"] = tk.Frame(self, width=200, height=90)
+        self.widgets["quit_label"] = tk.Label(self.widgets["quit_frame"], text="Are you sure you want to quit?")
+        self.widgets["quit_label"].place(x=90, y=30, anchor="center")
+        self.widgets["quit_yes_button"] = tk.Button(self.widgets["quit_frame"], text="Yes", command=self.quit, width=10)
+        self.widgets["quit_yes_button"].place(x=0, y=60)
+        self.widgets["quit_yes_button"] = tk.Button(self.widgets["quit_frame"], text="No", command=self.main_menu,
                                                     width=10)
-        self.widgets["exit_yes_button"].place(x=100, y=60)
-        self.widgets["exit_frame"].place(x=0, y=0)
-        self.widgets["exit_frame"].update()
-        self.widgets["exit_frame"].place(
+        self.widgets["quit_yes_button"].place(x=100, y=60)
+        self.widgets["quit_frame"].place(x=0, y=0)
+        self.widgets["quit_frame"].update()
+        self.widgets["quit_frame"].place(
             relx=(screensize[0] / 2) / screensize[0], rely=(screensize[1] / 2) / screensize[1], anchor="center"
         )
 
@@ -227,25 +230,79 @@ class App(tk.Frame):
     def main_game(self):
         self.reset_window()
         self.vars.pop("available_points")
-        self.widgets["health_progress_bar"] = tk.ttk.Progressbar(self, maximum=int(self.vars["hp"]),
-                                                                 value=int(self.vars["hp"]))
-        self.widgets["health_progress_bar"].place()  # todo place health bar
-        self.widgets["name_label"] = tk.Label(self, text=self.vars["username_str"].get())
-        self.widgets["name_label"].place()  # todo place name label
+        self.widgets["name_separator"] = tk.ttk.Separator(self)
+        self.widgets["name_separator"].place(relx=5 / screensize[0], rely=(screensize[1] - 125) / screensize[1],
+                                             relwidth=.99, anchor="w")
+        self.widgets["name_label"] = tk.Label(self, textvariable=self.vars["username_str"],
+                                              font=("Times New Roman", 15))
+        self.widgets["name_label"].place(relx=5 / screensize[0], rely=(screensize[1] - 95) / screensize[1], anchor="sw")
+        self.widgets["progress_separator"] = tk.ttk.Separator(self)
+        self.widgets["progress_separator"].place(relx=5 / screensize[0], rely=(screensize[1] - 95) / screensize[1],
+                                                 relwidth=.99, anchor="w")
+        progress_bars_style = ttk.Style()
+        progress_bars_style.theme_use("clam")
+        progress_bars_style.configure("red.Horizontal.TProgressbar", foreground="red", background="red")
+        progress_bars_style.configure("green.Horizontal.TProgressbar", foreground="green", background="green")
+        progress_bars_style.configure("yellow.Horizontal.TProgressbar", foreground="yellow", background="yellow")
+        self.widgets["hp_label"] = tk.Label(self, text="HP:", font=("Times New Roman", 15))
+        self.widgets["hp_label"].place(relx=5 / screensize[0], rely=(screensize[1] - 65) / screensize[1], anchor="sw")
+        self.widgets["hp_progress_bar"] = tk.ttk.Progressbar(self, maximum=int(self.vars["hp"]),
+                                                             value=int(self.vars["hp"]),
+                                                             style="red.Horizontal.TProgressbar")
+        self.widgets["hp_progress_bar"].place(relx=83 / screensize[0], rely=(screensize[1] - 70) / screensize[1],
+                                              relwidth=.8, anchor="sw")
         self.widgets["stamina_progress_bar"] = tk.ttk.Progressbar(self, maximum=int(self.vars["stamina"]),
-                                                                  value=int(self.vars["stamina"]))
-        self.widgets["stamina_progress_bar"].place()  # todo place stamina bar
-        self.vars["level_int"] = tk.IntVar(value=1)
-        self.widgets["level_label"] = tk.Label(self, text=f"Level: {self.vars['level_int'].get()}")
-        self.widgets["level_label"].place()  # todo place level label
-        self.widgets["level_progress_bar"] = tk.ttk.Progressbar(self, maximum=self.vars["level_int"] * 10, value=0)
-        self.widgets["level_progress_bar"].place()  # todo place level progress bar
-        self.widgets["exit_button"] = tk.Button(self, text="Exit", command=self.exit_choice)
-        self.widgets["exit_button"].place()  # todo place exit button
-        self.widgets["save_game_button"] = tk.Button(self, text="Save")
-        self.widgets["save_game_button"].place()  # todo place save game button
-        self.widgets["load_game_button"] = tk.Button(self, text="Load")
-        self.widgets["load_game_button"].place()  # todo place load game button
+                                                                  value=int(self.vars["stamina"]),
+                                                                  style="green.Horizontal.TProgressbar")
+        self.widgets["stamina_progress_bar"].place(relx=83 / screensize[0], rely=(screensize[1] - 40) / screensize[1],
+                                                   relwidth=.8, anchor="sw")
+        self.widgets["stamina_label"] = tk.Label(self, text="Stamina:", font=("Times New Roman", 15))
+        self.widgets["stamina_label"].place(relx=5 / screensize[0], rely=(screensize[1] - 35) / screensize[1],
+                                            anchor="sw")
+        self.vars["level_int"] = 1
+        self.widgets["level_separator"] = tk.ttk.Separator(self)
+        self.widgets["level_separator"].place(relx=5 / screensize[0], rely=(screensize[1] - 35) / screensize[1],
+                                              relwidth=.845, anchor="w")
+        self.widgets["level_label"] = tk.Label(self, text=f"Level: {self.vars['level_int']}",
+                                               font=("Times New Roman", 15))
+        self.widgets["level_label"].place(relx=5 / screensize[0], rely=(screensize[1] - 5) / screensize[1], anchor="sw")
+        self.widgets["level_progress_bar"] = tk.ttk.Progressbar(self, maximum=self.vars["level_int"] * 10, value=0,
+                                                                style="yellow.Horizontal.TProgressbar")
+        self.widgets["level_progress_bar"].place(relx=83 / screensize[0], rely=(screensize[1] - 10) / screensize[1],
+                                                 relwidth=.8, anchor="sw")
+        self.widgets["load_game_button"] = tk.Button(self, text="Load Game",
+                                                     font=("Times New Roman", 15), state="disabled")
+        self.widgets["load_game_button"].place(relx=(screensize[0] - 120) / screensize[0],
+                                               rely=(screensize[1] - 50) / screensize[1], anchor="se")
+        self.widgets["save_game_button"] = tk.Button(self, text="Save Game",
+                                                     font=("Times New Roman", 15), state="disabled")
+        self.widgets["save_game_button"].place(relx=(screensize[0] - 5) / screensize[0],
+                                               rely=(screensize[1] - 50) / screensize[1], anchor="se")
+        self.widgets["options_button"] = tk.Button(self, text="Options",
+                                                   font=("Times New Roman", 15), state="disabled")
+        self.widgets["options_button"].place(relx=(screensize[0] - 120) / screensize[0],
+                                             rely=(screensize[1] - 5) / screensize[1], anchor="se")
+        self.widgets["quit_button"] = tk.Button(self, text="Quit", command=self.quit_choice,
+                                                font=("Times New Roman", 15))
+        self.widgets["quit_button"].place(relx=(screensize[0] - 5) / screensize[0],
+                                          rely=(screensize[1] - 5) / screensize[1], anchor="se")
+        self.widgets["load_game_button"].update()
+        self.widgets["options_button"].place_configure(
+            relwidth=self.widgets["load_game_button"].winfo_width() / screensize[0]
+        )
+        self.widgets["save_game_button"].update()
+        self.widgets["quit_button"].place_configure(
+            relwidth=self.widgets["save_game_button"].winfo_width() / screensize[0]
+        )
+        self.widgets["inventory_box"] = tk.Label(self, borderwidth=2, relief="groove")
+        self.widgets["inventory_box"].place(relx=self.widgets["load_game_button"].winfo_x() / screensize[0],
+                                            rely=5 / screensize[1], anchor="nw", relwidth=.1375, relheight=.845)
+        self.widgets["inventory_label"] = tk.Label(self, text="Inventory", font=("Times New Roman", 15))
+        self.widgets["inventory_label"].place(relx=(self.widgets["load_game_button"].winfo_x() + 65) / screensize[0],
+                                              rely=10 / screensize[1], anchor="nw")
+        self.vars["inventory_dict"] = {"HP Potion": 15, "Stamina Potion": 15}
+        self.inventory_update()
+        self.action_sequence()
 
     def stat_change(self, event):
         if event.keysym == "space" or event.keysym == "Return":
@@ -365,6 +422,76 @@ class App(tk.Frame):
             if widget["width"] > 20:
                 widget.config(width=widget["width"] - 1)
                 self.after(20, lambda: self.button_animation(widget, version))
+
+    def inventory_update(self):
+        y = 60
+        for inventory_item in self.vars["inventory_dict"]:
+            self.widgets[f"{inventory_item.lower()}_label"] = tk.Label(
+                self, text=f"{inventory_item} - {self.vars['inventory_dict'][inventory_item]}",
+                font=("Times New Roman", 12)
+            )
+            self.widgets[f"{inventory_item.lower()}_label"].place(in_=self.widgets["inventory_box"], x=5, y=y)
+            self.widgets[f"{inventory_item.lower()}_use_button"] = tk.Button(self, text="Use",
+                                                                             font=("Times New Roman", 12))
+            self.widgets[f"{inventory_item.lower()}_use_button"].place(in_=self.widgets["inventory_box"], x=25,
+                                                                       y=y + 25)
+            self.widgets[f"{inventory_item.lower()}_use_button"].bind("<Key>", self.inventory_commands)
+            self.widgets[f"{inventory_item.lower()}_use_button"].bind("<Button-1>", self.inventory_commands)
+            y += 60
+
+    def inventory_commands(self, event):
+        if event.keysym == "space" or event.keysym == "Return" or event.num == 1:
+            name, _int = self.widgets[f'{[x for x in self.widgets.items() if event.widget in x][0][0].split("_")[0]}_' \
+                                      f'label'].cget('text').split(' - ')
+            if int(_int) > 0:
+                self.widgets[f"{[x for x in self.widgets.items() if event.widget in x][0][0].split('_')[0]}_label"] \
+                    .config(text=f"{name} - {int(_int) - 1}")
+                self.widgets[f"{name.split(' ')[0].lower()}_progress_bar"].config(
+                    value=self.widgets[f"{name.split(' ')[0].lower()}_progress_bar"].cget("value") + 50
+                )
+
+    def action_sequence(self):
+        self.widgets["enemy_name_label"] = tk.Label(self, text="Wolf",
+                                                    font=("Times New Roman", 15))
+        self.widgets["enemy_name_label"].place(relx=5 / screensize[0], rely=35 / screensize[1],
+                                               anchor="sw")
+        self.widgets["enemy_name_separator"] = tk.ttk.Separator(self)
+        self.widgets["enemy_name_separator"].place(relx=5 / screensize[0], rely=35 / screensize[1],
+                                                       relwidth=.845, anchor="w")
+        progress_bars_style = ttk.Style()
+        progress_bars_style.theme_use("clam")
+        progress_bars_style.configure("red.Horizontal.TProgressbar", foreground="red", background="red")
+        progress_bars_style.configure("green.Horizontal.TProgressbar", foreground="green", background="green")
+        progress_bars_style.configure("yellow.Horizontal.TProgressbar", foreground="yellow", background="yellow")
+        self.widgets["enemy_hp_label"] = tk.Label(self, text="HP:", font=("Times New Roman", 15))
+        self.widgets["enemy_hp_label"].place(relx=5 / screensize[0], rely=65 / screensize[1],
+                                             anchor="sw")
+        self.widgets["enemy_hp_progress_bar"] = tk.ttk.Progressbar(self, maximum=int(self.vars["hp"]),
+                                                                   value=int(self.vars["hp"]),
+                                                                   style="red.Horizontal.TProgressbar")
+        self.widgets["enemy_hp_progress_bar"].place(relx=83 / screensize[0], rely=60 / screensize[1],
+                                                    relwidth=.8, anchor="sw")
+        self.widgets["enemy_stamina_progress_bar"] = tk.ttk.Progressbar(self, maximum=int(self.vars["stamina"]),
+                                                                        value=int(self.vars["stamina"]),
+                                                                        style="green.Horizontal.TProgressbar")
+        self.widgets["enemy_stamina_progress_bar"].place(relx=83 / screensize[0],
+                                                         rely=90 / screensize[1], relwidth=.8,
+                                                         anchor="sw")
+        self.widgets["enemy_stamina_label"] = tk.Label(self, text="Stamina:", font=("Times New Roman", 15))
+        self.widgets["enemy_stamina_label"].place(relx=5 / screensize[0], rely=95 / screensize[1],
+                                                  anchor="sw")
+        self.widgets["enemy_progress_separator"] = tk.ttk.Separator(self)
+        self.widgets["enemy_progress_separator"].place(relx=5 / screensize[0], rely=100 / screensize[1],
+                                                       relwidth=.845, anchor="w")
+        self.widgets["combat_message"] = tk.Message(self, text="You encountered a Wolf! Choose your attack."
+                                                               "                                                      "
+                                                               "                                                      "
+                                                               "                                                      "
+                                                               "                                                      "
+                                                               "                                                  ",
+                                                    width=2000, justify="left", font=("Times New Roman", 12),
+                                                    borderwidth=2, relief="groove")
+        self.widgets["combat_message"].place(relx=5 / screensize[0], rely=120 / screensize[1], anchor="w")
 
     def reset_window(self):
         self.master.unbind("<Motion>")
