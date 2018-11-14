@@ -58,9 +58,12 @@ class App(tk.Frame):
         self.widgets["options_button"] = tk.Button(self, text="Options", command=self.options_menu, width=20, height=2,
                                                    font=("Times New Roman", 20), state="disabled")
         self.widgets["options_button"].place(relx=5 / screensize[0], rely=485 / screensize[1])
+        self.widgets["about_button"] = tk.Button(self, text="About", command=self.about_page, width=20, height=2,
+                                                font=("Times New Roman", 20))
+        self.widgets["about_button"].place(relx=5 / screensize[0], rely=605 / screensize[1])
         self.widgets["quit_button"] = tk.Button(self, text="Quit", command=self.quit_choice, width=20, height=2,
                                                 font=("Times New Roman", 20))
-        self.widgets["quit_button"].place(relx=5 / screensize[0], rely=605 / screensize[1])
+        self.widgets["quit_button"].place(relx=5 / screensize[0], rely=725 / screensize[1])
         self.master.bind("<Motion>", self.mouse_button_highlight)
         self.master.bind("<KeyRelease>", self.button_button_highlight)
         for widget in self.widgets.values():
@@ -69,6 +72,7 @@ class App(tk.Frame):
 
     def character_sheet(self):
         self.reset_window()
+        self.vars.clear()
         self.widgets["character_sheet_label"] = tk.Label(self, text="Character Sheet",
                                                          font=("Times New Roman", 40, "bold"))
         self.widgets["character_sheet_label"].place(relx=5 / screensize[0], rely=5 / screensize[1])
@@ -176,6 +180,9 @@ class App(tk.Frame):
         pass
 
     def options_menu(self):
+        pass
+
+    def about_page(self):
         pass
 
     def quit_choice(self):
@@ -483,15 +490,12 @@ class App(tk.Frame):
         self.widgets["enemy_progress_separator"] = tk.ttk.Separator(self)
         self.widgets["enemy_progress_separator"].place(relx=5 / screensize[0], rely=100 / screensize[1],
                                                        relwidth=.845, anchor="w")
-        self.widgets["combat_message"] = tk.Message(self, text="You encountered a Wolf! Choose your attack."
-                                                               "                                                      "
-                                                               "                                                      "
-                                                               "                                                      "
-                                                               "                                                      "
-                                                               "                                                  ",
+        self.widgets["combat_message"] = tk.Message(self, text="You encountered a Wolf!",
                                                     width=2000, justify="left", font=("Times New Roman", 12),
                                                     borderwidth=2, relief="groove")
-        self.widgets["combat_message"].place(relx=5 / screensize[0], rely=120 / screensize[1], anchor="w")
+        self.widgets["combat_message"].place(relx=5 / screensize[0], rely=(screensize[1] - 150) / screensize[1], anchor="w")
+        self.widgets["attack_button"] = tk.Button(self, text="Attack", font=("Times New Roman", 15))
+        self.widgets["attack_button"].place(relx=5 / screensize[0], rely=125 / screensize[1], anchor="w")
 
     def reset_window(self):
         self.master.unbind("<Motion>")

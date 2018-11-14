@@ -1,4 +1,4 @@
 # False Insignia
 A simplistic version of Final Fantasy
-# V0.1.0
-* Fully functional character creation
+# V0.1.1
+* Added fight sequence material
