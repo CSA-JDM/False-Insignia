@@ -20,6 +20,7 @@ Copyright (C) 2018  Jacob Meadows
 """
 import tkinter as tk
 from tkinter import ttk as ttk
+import random
 
 
 try:
@@ -59,7 +60,7 @@ class App(tk.Frame):
                                                    font=("Times New Roman", 20), state="disabled")
         self.widgets["options_button"].place(relx=5 / screensize[0], rely=485 / screensize[1])
         self.widgets["about_button"] = tk.Button(self, text="About", command=self.about_page, width=20, height=2,
-                                                font=("Times New Roman", 20))
+                                                 font=("Times New Roman", 20))
         self.widgets["about_button"].place(relx=5 / screensize[0], rely=605 / screensize[1])
         self.widgets["quit_button"] = tk.Button(self, text="Quit", command=self.quit_choice, width=20, height=2,
                                                 font=("Times New Roman", 20))
@@ -183,7 +184,37 @@ class App(tk.Frame):
         pass
 
     def about_page(self):
-        pass
+        self.master.unbind("<Motion>")
+        self.master.unbind("<KeyRelease>")
+        for widget in self.widgets.values():
+            try:
+                widget.config(state="disabled")
+            except tk.TclError:
+                pass
+            widget.unbind("<Motion>")
+        self.widgets["about_frame"] = tk.Frame(self, width=480, height=300, bd=10, relief="groove")
+        self.widgets["about_message"] = tk.Message(
+            self.widgets["quit_frame"],
+            text="A simplistic version of Final Fantasy\n\n"
+                 "Copyright (C) 2018  Jacob Meadows\n\n\t"
+                 "This program is free software: you can redistribute it and/or modify\n\t"
+                 "it under the terms of the GNU General Public License as published by\n\t"
+                 "the Free Software Foundation, either version 3 of the License, or\n\t"
+                 "(at your option) any later version.\n\n\t"
+                 "This program is distributed in the hope that it will be useful,\n\t"
+                 "but WITHOUT ANY WARRANTY; without even the implied warranty of\n\t"
+                 "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n\t"
+                 "GNU General Public License for more details.\n\n\t"
+                 "You should have received a copy of the GNU General Public License\n\t"
+                 "along with this program.  If not, see <http://www.gnu.org/licenses/>.",
+            width=1000
+        )
+        self.widgets["about_message"].place(relx=.5, rely=.5, anchor="center")
+        self.widgets["back_button"] = tk.Button(self, text="Back", font=("Times New Roman", 16), command=self.main_menu)
+        self.widgets["back_button"].place(relx=5 / screensize[0], rely=(screensize[1] - 5) / screensize[1], anchor="sw")
+        self.widgets["about_frame"].place(x=0, y=0)
+        self.widgets["about_frame"].update()
+        self.widgets["about_frame"].place(relx=.5, rely=.5, anchor="center")
 
     def quit_choice(self):
         self.master.unbind("<Motion>")
@@ -199,9 +230,9 @@ class App(tk.Frame):
         self.widgets["quit_label"].place(x=90, y=30, anchor="center")
         self.widgets["quit_yes_button"] = tk.Button(self.widgets["quit_frame"], text="Yes", command=self.quit, width=10)
         self.widgets["quit_yes_button"].place(x=0, y=60)
-        self.widgets["quit_yes_button"] = tk.Button(self.widgets["quit_frame"], text="No", command=self.main_menu,
-                                                    width=10)
-        self.widgets["quit_yes_button"].place(x=100, y=60)
+        self.widgets["quit_no_button"] = tk.Button(self.widgets["quit_frame"], text="No", command=self.main_menu,
+                                                   width=10)
+        self.widgets["quit_no_button"].place(x=100, y=60)
         self.widgets["quit_frame"].place(x=0, y=0)
         self.widgets["quit_frame"].update()
         self.widgets["quit_frame"].place(
@@ -448,8 +479,8 @@ class App(tk.Frame):
 
     def inventory_commands(self, event):
         if event.keysym == "space" or event.keysym == "Return" or event.num == 1:
-            name, _int = self.widgets[f'{[x for x in self.widgets.items() if event.widget in x][0][0].split("_")[0]}_' \
-                                      f'label'].cget('text').split(' - ')
+            name, _int = self.widgets[f'{[x for x in self.widgets.items() if event.widget in x][0][0].split("_")[0]}'
+                                      f'_label'].cget('text').split(' - ')
             if int(_int) > 0:
                 self.widgets[f"{[x for x in self.widgets.items() if event.widget in x][0][0].split('_')[0]}_label"] \
                     .config(text=f"{name} - {int(_int) - 1}")
@@ -458,13 +489,15 @@ class App(tk.Frame):
                 )
 
     def action_sequence(self):
-        self.widgets["enemy_name_label"] = tk.Label(self, text="Wolf",
+        names = ["Wolf", "Zombie", "Slime", "Lizardman"]
+        random_name = random.choice(names)
+        self.widgets["enemy_name_label"] = tk.Label(self, text=random_name,
                                                     font=("Times New Roman", 15))
         self.widgets["enemy_name_label"].place(relx=5 / screensize[0], rely=35 / screensize[1],
                                                anchor="sw")
         self.widgets["enemy_name_separator"] = tk.ttk.Separator(self)
-        self.widgets["enemy_name_separator"].place(relx=5 / screensize[0], rely=35 / screensize[1],
-                                                       relwidth=.845, anchor="w")
+        self.widgets["enemy_name_separator"].place(relx=5 / screensize[0], rely=35 / screensize[1], relwidth=.845,
+                                                   anchor="w")
         progress_bars_style = ttk.Style()
         progress_bars_style.theme_use("clam")
         progress_bars_style.configure("red.Horizontal.TProgressbar", foreground="red", background="red")
@@ -490,12 +523,49 @@ class App(tk.Frame):
         self.widgets["enemy_progress_separator"] = tk.ttk.Separator(self)
         self.widgets["enemy_progress_separator"].place(relx=5 / screensize[0], rely=100 / screensize[1],
                                                        relwidth=.845, anchor="w")
-        self.widgets["combat_message"] = tk.Message(self, text="You encountered a Wolf!",
+        self.widgets["combat_message"] = tk.Message(self, text=f"You encountered a {random_name}!",
                                                     width=2000, justify="left", font=("Times New Roman", 12),
                                                     borderwidth=2, relief="groove")
-        self.widgets["combat_message"].place(relx=5 / screensize[0], rely=(screensize[1] - 150) / screensize[1], anchor="w")
-        self.widgets["attack_button"] = tk.Button(self, text="Attack", font=("Times New Roman", 15))
+        self.widgets["combat_message"].place(relx=5 / screensize[0], rely=(screensize[1] - 150) / screensize[1],
+                                             anchor="w")
+        self.widgets["attack_button"] = tk.Button(self, text="Attack", font=("Times New Roman", 15),
+                                                  command=self.attack_command)
         self.widgets["attack_button"].place(relx=5 / screensize[0], rely=125 / screensize[1], anchor="w")
+
+    def attack_command(self):
+        for widget in self.widgets.values():
+            try:
+                widget.config(state="disabled")
+            except tk.TclError:
+                pass
+        self.widgets["attack_progress_bar"] = tk.ttk.Progressbar(self)
+        self.widgets["attack_progress_bar"].place(relx=.4, rely=.5)
+        self.widgets["attack_progress_bar"].start()
+        self.widgets["attack_progress_bar"].focus_set()
+        self.widgets["attack_progress_bar"].bind("<space>", lambda event: self.successful_hit()
+                                                 if self.widgets["attack_progress_bar"].cget("value") > 90 else None)
+        self.widgets["attack_instructions_label"] = tk.Label(self, text="Press SPACE when the progressbar is nearly "
+                                                                        "full!")
+        self.widgets["attack_instructions_label"].place(relx=.375, rely=.55)
+
+    def successful_hit(self):
+        for widget in self.widgets.values():
+            try:
+                widget.config(state="normal")
+            except tk.TclError:
+                pass
+        self.widgets["save_game_button"].config(state="disabled")
+        self.widgets["load_game_button"].config(state="disabled")
+        self.widgets["options_button"].config(state="disabled")
+        self.widgets["combat_message"].config(
+            text=self.widgets["combat_message"].cget("text").split("\n")[-1] +
+            f"\nSuccess! The {self.widgets['enemy_name_label'].cget('text')} took 5 damage."
+        )
+        self.widgets["attack_progress_bar"].destroy()
+        self.widgets.pop("attack_progress_bar")
+        self.widgets["attack_instructions_label"].destroy()
+        self.widgets.pop("attack_instructions_label")
+        self.widgets["enemy_hp_progress_bar"].config(value=self.widgets["enemy_hp_progress_bar"].cget("value") - 5)
 
     def reset_window(self):
         self.master.unbind("<Motion>")
